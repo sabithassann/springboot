@@ -1,0 +1,4 @@
+com\mycompany\stdcrud\dao\StudentDao.class
+com\mycompany\stdcrud\controller\StudentController.class
+com\mycompany\stdcrud\dao\StudentDao$1.class
+com\mycompany\stdcrud\model\Student.class
