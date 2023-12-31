@@ -47,6 +47,7 @@
         <f:checkbox path="hobby" value="Fishing" /> Fishing<br/>
         <f:checkbox path="hobby" value="Reading" /> Reading<br/>
         <f:checkbox path="hobby" value="Gaming" /> Gaming<br/>
+        <f:checkbox path="hobby" value="Sleeping" /> Sleeping<br/>
     </td>
 </tr>
 
