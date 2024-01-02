@@ -1,0 +1,4 @@
+com\mycompany\productcrud\dao\ProductDao.class
+com\mycompany\productcrud\model\Product.class
+com\mycompany\productcrud\dao\ProductDao$1.class
+com\mycompany\productcrud\controller\ProductController.class
