@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your App - Inventory Form</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+
+    <!-- FontAwesome CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+
+<!--<div class="container mt-5">-->
+<!--    <h2 class="mb-4">Inventory Form</h2>-->
+
+<!--    &lt;!&ndash; Display message if present &ndash;&gt;-->
+<!--    <div th:if="${message}" class="alert alert-warning" role="alert">-->
+<!--        <p th:text="${message}"></p>-->
+<!--    </div>-->
+
+<!--    <form th:action="@{/saveInventory}" th:object="${inventory}" method="post">-->
+
+<!--        &lt;!&ndash; Add your inventory form fields here &ndash;&gt;-->
+<!--        <div class="form-group">-->
+<!--            <label for="materialId">Material:</label>-->
+<!--            <select id="materialId" name="materialId" class="form-control" th:field="*{rawMaterial.materialID}" required>-->
+<!--                &lt;!&ndash; Populate this dropdown with data from the RawMaterial Table &ndash;&gt;-->
+<!--                <option th:each="material : ${rawMaterials}" th:value="${material.materialID}" th:text="${material.materialName}"></option>-->
+<!--            </select>-->
+<!--        </div>-->
+
+<!--        <div class="form-group">-->
+<!--            <label for="quantityInStock">Quantity in Stock:</label>-->
+<!--            <input type="text" id="quantityInStock" name="quantityInStock" class="form-control"-->
+<!--                   th:field="*{quantityInStock}" required>-->
+<!--        </div>-->
+
+<!--        <div class="form-group">-->
+<!--            <label for="lastStockUpdateDate">Last Stock Update Date:</label>-->
+<!--            <input type="date" id="lastStockUpdateDate" name="lastStockUpdateDate" class="form-control"-->
+<!--                   th:field="*{lastStockUpdateDate}" required>-->
+<!--        </div>-->
+
+<!--        <div class="form-group">-->
+<!--            <label for="procurementId">Procurement ID:</label>-->
+<!--            <input type="text" id="procurementId" name="procurementId" class="form-control"-->
+<!--                   th:field="*{procurementId}" required>-->
+<!--        </div>-->
+
+<!--        &lt;!&ndash; Add other fields as needed &ndash;&gt;-->
+
+<!--        <button type="submit" class="btn btn-primary">Save Inventory</button>-->
+<!--    </form>-->
+<!--</div>-->
+
+
+
+
+<!-- Add your inventory form fields here -->
+<div class="container mt-5">
+    <h2 class="mb-4">Inventory Form</h2>
+
+    <!-- Display message if present -->
+    <div th:if="${message}" class="alert alert-warning" role="alert">
+        <p th:text="${message}"></p>
+    </div>
+
+    <form th:action="@{/saveInventory}" th:object="${inventory}" method="post">
+
+        <!-- Add your inventory form fields here -->
+        <div class="form-group">
+            <label for="materialId">Material:</label>
+            <select id="materialId" name="materialId" class="form-control" th:field="*{rawMaterial.materialID}" required>
+                <!-- Populate this dropdown with data from the RawMaterial Table -->
+                <option th:each="material : ${rawMaterials}" th:value="${material.materialID}" th:text="${material.materialName}"></option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="quantityInStock">Quantity in Stock:</label>
+            <input type="text" id="quantityInStock" name="quantityInStock" class="form-control" th:field="*{quantityInStock}" required>
+        </div>
+
+        <div class="form-group">
+            <label for="lastStockUpdateDate">Last Stock Update Date:</label>
+            <input type="date" id="lastStockUpdateDate" name="lastStockUpdateDate" class="form-control" th:field="*{lastStockUpdateDate}" required>
+        </div>
+
+        <div class="form-group">
+            <label for="procurementId">Procurement ID:</label>
+            <input type="text" id="procurementId" name="procurementId" class="form-control" th:field="*{procurementId}" required>
+        </div>
+
+        <!-- Add other fields as needed -->
+
+        <button type="submit" class="btn btn-primary">Save Inventory</button>
+    </form>
+
+
+    <!-- Display material and quantity data here -->
+    <div th:fragment="procurement-data">
+        <p th:text="${materialId}"></p>
+        <p th:text="${quantity}"></p>
+    </div>
+</div>
+
+
+
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaR+kB" crossorigin="anonymous"></script>
+
+<!-- Add this script to make an AJAX call when procurementId changes -->
+<script th:inline="javascript">
+    $(document).ready(function () {
+        $('#procurementId').change(function () {
+            var procurementId = $(this).val();
+
+            /*<![CDATA[*/
+            $.ajax({
+                type: 'GET',
+                url: /*[[ @{'/getProcurementData'} ]]*/ + '?procurementId=' + procurementId,
+                success: function (data) {
+                    $('#procurement-data').html(data);
+                }
+            });
+            /*]]>*/
+        });
+    });
+</script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+
+</body>
+</html>
