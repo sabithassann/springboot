@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Show Procurement</title>
+</head>
+<body>
+<h1>Procurement Details</h1>
+<p>Quantity: <span th:text="${procurement.quantity}"></span></p>
+<p>Procurement Date: <span th:text="${#dates.format(procurement.procurementDate, 'yyyy-MM-dd')}"></span></p>
+<p>Quantity: <span th:text="${procurement.unitPrice}"></span></p>
+<p>Quantity: <span th:text="${procurement.rawMaterial.getMaterialName()}"></span></p>
+<p>Quantity: <span th:text="${procurement.supplier.getSupplierName()}"></span></p>
+
+</body>
+</html>
