@@ -1,0 +1,13 @@
+<div th:insert="header.html"></div>
+
+<div class="container mt-5">
+    <form action="/showProcurement" method="post" class="mb-3">
+        <div class="mb-3">
+            <label for="procurementId" class="form-label">Procurement ID:</label>
+            <input type="text" id="procurementId" name="procurementId" class="form-control" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Show Procurement</button>
+    </form>
+</div>
+</body>
+</html>
