@@ -1,0 +1,56 @@
+<div th:insert="~{header.html}"></div>
+<div class="container mt-5">
+    <h1>Payment Details of </h1>
+    <h2  th:text="${payment.paymentID}"></h2>
+
+    <table class="table table-bordered">
+        <tbody>
+        <tr>
+            <th>Payment Id</th>
+            <td th:text="${payment.paymentID}"></td>
+        </tr>
+        <tr>
+            <th>Payment Date</th>
+            <td th:text="${#dates.format(payment.paymentDate, 'yyyy-MM-dd')}"></td>
+        </tr>
+        <tr>
+            <th>Payment Amount</th>
+            <td th:text="${payment.paymentAmount}"></td>
+        </tr>
+
+        <tr>
+            <th>Procurement Id</th>
+            <td th:text="${payment.procurement.getId()}"></td>
+        </tr>
+
+        <tr>
+            <th>Supplier Name</th>
+            <td th:text="${payment.procurement.supplier.getSupplierName()}"></td>
+        </tr>
+
+        <tr>
+            <th>Material Name</th>
+            <td th:text="${payment.procurement.rawMaterial.getMaterialName()}"></td>
+        </tr>
+
+        <tr>
+            <th>Total Quantity</th>
+            <td th:text="${payment.procurement.getQuantity()}"></td>
+        </tr>
+
+
+
+        <tr>
+            <th>Total Price</th>
+            <td th:text="${payment.procurement.getTotalPrice()}"></td>
+        </tr>
+
+        <tr>
+            <th>Payment Account</th>
+            <td th:text="${payment.paymentAmount}"></td>
+        </tr>
+
+        </tbody>
+    </table>
+</div>
+<hr>
