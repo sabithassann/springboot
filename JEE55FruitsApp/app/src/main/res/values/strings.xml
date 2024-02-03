@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">JEE 55 Fruits App</string>
+    <string name="sabit">Hello ,this is sabit speaking</string>
+    <string name="jahir">Hello ,this is Jahir speaking</string>
+    <string name="home">Home Activity</string>
+    <string name="button1">Test</string>
+</resources>
